@@ -1,0 +1,10 @@
+body {
+    background: radial-gradient(#bd5400 15%, transparent 16%) 0 0,
+       radial-gradient(#bd5400 15%, transparent 16%) 8px 8px,
+        radial-gradient(rgba(117, 77, 0, 0.66) 15%, transparent 20%) 0 1px,
+        radial-gradient(rgba(189, 84, 0, 0.1) 15%, transparent 20%) 8px 9px;
+    background-color: #bd5400;
+    background-size: 16px 16px;
+}
+
+

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+
+   <head>
+       <meta charset="utf-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <title>Predicting</title>
+
+    <!-- <link rel="stylesheet" type = "text/css" href="{% static 'predictor/base.css' %}"> -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+   <link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
+   </head>
+   <header>
+   <body>
+       <style media="screen">
+      .navbar-inverse {
+          color:white;
+         background-color:#472C00;
+     }
+    input[type=text]:focus {
+        width: 25%;
+}
+      h2 input {
+          -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+      }
+      input {
+          box-shadow: 3px 3px 3px #034732;
+      }
+      .submitbutton{
+          margin: 0 auto;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          text-align: center;
+      }
+      .points {
+          margin: 0 auto;
+           margin-left: auto ;
+          margin-right: auto ;
+          display: inline-block;
+          float: center;
+          padding-left: 300px;
+      }
+      .pointsone {
+          margin: 10px;
+            height: auto;
+            width: auto;
+            display:inline-block;
+      }
+      .pointstwo {
+          margin: 10px;
+          height: auto;
+            width: auto;
+          display:inline-block;
+      }
+      .pointsthree {
+          margin: 10px;
+          height: auto;
+            width: auto;
+          display: inline-block;
+      }
+      div h1 {
+          text-align: center;
+      }
+      div h2 {
+          text-align: center;
+      }
+      body h1 {
+          font-family: 'Glegoo', serif;
+	font-size: 50px;
+	line-height: 65px;
+           text-shadow: 2px 2px #ffffff;
+       }
+      body header {
+          font-size: 20px;
+      }
+       body{
+        /*keep this one*/
+         background-image: url("http://www.desktopwallpaperhd.net/wallpapers/10/0/football-grass-pitch-101072.jpg");
+           /*background-image: url("http://previews.123rf.com/images/vagant/vagant1404/vagant140400006/27511152-Green-Artificial-Grass-on-a-Football-Field-Background-Stock-Photo.jpg");*/
+         font-family: 'Glegoo', serif;
+	font-size: 15px;
+	line-height: 25px;
+           color: #FFFFFF;
+           background-color: #472c00;
+       }
+      nav .navbar{
+          color: #d3d3d3;
+      }
+      .btn-primary {
+          background-color: #472C00;
+          border-color: #472C00;
+      }
+      input, textarea {
+  background-color : #ffffff;
+}
+           .well {
+               background-color:#d3d3d3;
+           }
+           .well h1 {
+               color:#472C00;
+           }
+           .modal-content {
+               background-color: #d3d3d3;
+               color: #472C00;
+           }
+     </style>
+     <!-- <h1> {% if user.is_authenticated %}
+      Hello, {{ user.username }}!
+      {% endif %} </h1> -->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'predictor:index' %}">Fanta-Sci</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="{% url 'predictor:home' %}">Predict</a></li>
+              <li><a href="{% url 'predictor:league' %}">League Settings</a></li>
+               <li>
+                  {% if user.is_authenticated%}
+                <a href="{% url 'predictor:logout' %}">Logout</a>
+                  {% else %}
+                  <li>
+                <a href="{% url 'predictor:login' %}">Login</a>
+                </li>
+                    <li>
+                <a href="{% url 'predictor:register' %}">Register</a>
+                        </li>
+                  {% endif %}
+            </ul>
+
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+    </header>
+
+
+ <div class="col-xs-6" style="margin-bottom: 15px;">
+
+   <div style="padding-bottom: 50px">
+        Please select a league:
+        <form>
+          <select class="form-control" name="league_name" style="width: 200px;">
+            {% for leaguerulesmodel in league_list %}
+            <option{% if league_name == leaguerulesmodel.league_name %} selected="selected"{% endif %}> {{leaguerulesmodel.league_name}} </option>
+            {% endfor %}
+          </select>
+          <!-- <input id="player-submit" class="btn btn-primary" style="margin-top:15px;" type="submit" value="Choose"> -->
+          <input type="submit" class="btn btn-primary" style="margin-top:15px;">
+        </form>
+      </div>
+      <div class="well col-xs-12">
+        <h1>Select a player!</h1>
+        <hr style="border: 1px solid darkgray">
+
+
+        <div class="col-xs-6">
+
+          <div class="col-xs-6" style="margin-bottom: 15px;">
+            <form>
+              <select class="form-control" name="position">
+                <option{% if player_position == 'QB' %} selected="selected"{% endif %}>QB</option>
+                <option{% if player_position == 'RB' %} selected="selected"{% endif %}>RB</option>
+                <option{% if player_position == 'WR' %} selected="selected"{% endif %}>WR</option>
+                <option{% if player_position == 'TE' %} selected="selected"{% endif %}>TE</option>
+                <!-- <option{% if player_position == 'DST' %} selected="selected"{% endif %}>DST</option> -->
+                <option{% if player_position == 'K' %} selected="selected"{% endif %}>K</option>
+              </select>
+            </form>
+          </div>
+
+          <div class="col-xs-12">
+            <form>
+              <select class="form-control" name="player">
+              {% for player in player_names %}
+              <option{% if player_name == player %} selected="selected"{% endif %}>{{ player }}</option>
+              {% endfor %}
+              </select>
+              <input class="btn btn-primary" style="margin-top:15px;" type="submit" value="Choose">
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+
+      </div>
+
+
+
+
+
+
+   <!-- {% for player in qb_list %}
+    {{player}}
+   {% endfor %} -->
+
+
+
+<div class="player-information col-xs-4" style="padding-left: 60px; float: left">
+  {% for player in players %}
+    <div class="col-xs-12" style="padding-bottom: 40px">
+      <p class="name">Name: <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#{{ player.name|cut:"." }}Modal">
+        {{ player.name }}
+      </button></p>
+
+      <div><button class="btn btn-primary btn-lg" type="button" data-dismiss="modal" aria-label="Close">Projection: {{ player.prediction }}</button></div>
+
+    </div>
+  {% endfor %}
+</div>
+</div>
+    {% for player in players %}
+<div class="modal fade" id="{{ player.name|cut:"." }}Modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Player Variables</h4>
+      </div>
+      <div class="modal-body">
+        <form id="{{ player.name|cut:"." }}Form">
+        <input type="hidden" name="player" value="{{ player.name }}" />
+        {% if player.position == 'QB' %}
+        <label for="pass_attempts">Passing Attempts</label>
+        <input id="passing_attempts" name="pass_attempts" type="text" value={{ player.pass_attempts }}></input>
+        <br></br>
+        <label for="pass_completions">Passing Completions</label>
+        <input id="pass_completions" name="pass_completions" type="text" value={{ player.pass_completions }}></input>
+        <br></br>
+        <label for="interceptions">Interceptions</label>
+        <input id="interceptions" name="interceptions" type="text" value={{ player.interceptions }}></input>
+        <br></br>
+        <label for="rush_attempts">Rush Attempts</label>
+        <input id="rush_attempts" name="rush_attempts" type="text" value={{ player.rush_attempts }}></input>
+        <br></br>
+        <label for="rush_long">Rush Long (Average Longest Run)</label>
+        <input id="rush_long" name="rush_long" type="text" value={{ player.rush_long }}></input>
+        <br></br>
+        <label for="rush_long_td">Rush Long TD (> 50 Yards)</label>
+        <input id="rush_long_td" name="rush_long_td" type="text" value={{ player.rush_long_td }}></input>
+        {% endif %}
+        {% if player.position == 'RB' or player.position == 'WR' or player.position == 'TE' %}
+        <label for="rush_attempts">Rush Attempts</label>
+        <input id="rush_attempts" name="rush_attempts" type="text" value={{ player.rush_attempts }}></input>
+        <br></br>
+        <label for="rush_long">Rush Long (Average Longest Run)</label>
+        <input id="rush_long" name="rush_long" type="text" value={{ player.rush_long }}></input>
+        <br></br>
+        <label for="rush_long_td">Rush Long TD (>50 Yards)</label>
+        <input id="rush_long_td" name="rush_long_td" type="text" value={{ player.rush_long_td }}></input>
+        <br></br>
+        <label for="receptions">Receptions</label>
+        <input id="receptions" name="receptions" type="text" value={{ player.receptions }} ></input>
+        <br></br>
+        <label for="receptions_long">Receptions Long (Average Longest Reception)</label>
+        <input id="receptions_long" name="receptions_long" type="text" value={{ player.receptions_long }} ></input>
+        <br></br>
+        <label for="receptions_long_td">Receptions Long TD (> 50 Yards)</label>
+        <input id="receptions_long_td" name="receptions_long_td" type="text" value={{ player.receptions_long_td }}></input>
+        {% endif %}
+        {% if player.position == 'K' %}
+        <label for="kicking_attempts">Kick Attempts</label>
+        <input id="kicking_attempts" name="kicking_attempts" type="text" value={{ player.kicking_attempts }}></input>
+        <br></br>
+        <label for="kicking_percent">Kicking Percent</label>
+        <input id="kicking_percent" name="kicking_percent" type="text" value={{ player.kicking_percent }}></input>
+        <br></br>
+        <!-- <label for="kicking_yards">Kicking Yards</label>
+        <input id="kicking_yards" name="kicking_yards" type="text" value={{ player.kicking_yards }}></input>
+        <br></br> -->
+        <label for="xp_attempts">XP Attempts</label>
+        <input id="xp_attempts" name="xp_attempts" type="text" value={{ player.xp_attempt }}></input>
+        <br></br>
+        <label for="xp_missed">XP Missed</label>
+        <input id="xp_missed" name="xp_missed" type="text" value={{ player.xp_missed }}></input>
+        <br></br>
+        <label for="xp_blocked">XP Blocked</label>
+        <input id="xp_blocked" name="xp_blocked" type="text" value={{ player.xp_blocked }}></input>
+        {% endif %}
+        </form>
+      </div>
+      <div class="modal-footer">
+      <form style="display: inline;">
+        <input type="hidden" name="delete" value="{{ player.name }}">
+        <button type="radio" class="btn">Delete Player</button>
+      </form>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" data-target="#{{ player.name|cut:"." }}Form">Predict</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+{% endfor %}
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="/static/predictor/app.js"></script>
+  </body>
+
+
+</html>

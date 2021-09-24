@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+   <head>
+       <meta charset="utf-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <title>Predicting</title>
+
+    <!-- <link rel="stylesheet" type = "text/css" href="{% static 'predictor/base.css' %}"> -->
+
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+       <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+   </head>
+   <header>
+   <body>
+
+     <style media="screen">
+       * {
+          font-family: 'Glegoo', serif;
+
+      }
+
+      .navbar-inverse {
+          color:white;
+         background-color:#472C00;
+
+     }
+
+    input[type=text]:focus {
+        width: 25%;
+}
+      h2 input {
+          -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+      }
+
+      input {
+          box-shadow: 3px 3px 3px #034732;
+      }
+
+      .submitbutton{
+          margin: 0 auto;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          text-align: center;
+
+      }
+
+      .points {
+          margin: 0 auto;
+           margin-left: auto ;
+          margin-right: auto ;
+          display: inline-block;
+          float: center;
+          padding-left: 300px;
+      }
+
+      .pointsone {
+          margin: 10px;
+            height: auto;
+            width: auto;
+            display:inline-block;
+      }
+
+      .pointstwo {
+          margin: 10px;
+          height: auto;
+            width: auto;
+          display:inline-block;
+      }
+
+      .pointsthree {
+          margin: 10px;
+          height: auto;
+            width: auto;
+          display: inline-block;
+      }
+
+      div h1 {
+          text-align: center;
+      }
+      div h2 {
+          text-align: center;
+      }
+
+      body header {
+          font-size:20px;
+      }
+
+      body h1 {
+	font-size: 50px;
+	line-height: 65px;
+           text-shadow: 2px 2px #ffffff;
+
+       }
+
+       body{
+           font-family: 'Glegoo', serif;
+          /*keep this one*/
+           background-image: url("http://wp_media-prod.s3.amazonaws.com/app/uploads/2015/01/30101338/o-FOOTBALL-FIELD-facebook.jpg");
+	font-size: 15px;
+	line-height: 25px;
+           color: #FFFFFF;
+           background-color: #472c00;
+       }
+
+      nav .navbar{
+          color: #d3d3d3;
+      }
+
+      .btn-primary {
+          background-color: #472C00;
+          border-color: #472C00;
+      }
+
+      input, textarea {
+  background-color : #ffffff;
+}
+
+       textarea:focus, input:focus {
+    color: #000000;
+}
+      input, select, textarea{
+        color: #000;
+          background-color: #4c565e;
+    }
+
+      input, textarea {
+         background-color : #979797;
+    }
+}
+     </style>
+     <!-- <h1> {% if user.is_authenticated %}
+      Hello, {{ user.username }}!
+      {% endif %} </h1> -->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'predictor:index' %}">Fanta-Sci</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+
+              <li>
+                  {% if user.is_authenticated%}
+                <a href="{% url 'predictor:logout' %}">Logout</a>
+                  {% else %}
+                  <li>
+                <a href="{% url 'predictor:login' %}">Login</a>
+                </li>
+                    <li>
+                <a href="{% url 'predictor:register' %}">Register</a>
+                        </li>
+                  {% endif %}
+              </li>
+
+            </ul>
+
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+  </header>
+
+
+
+    {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}.</p>
+    {% endif %}
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="/static/predictor/app.js"></script>
+  </body>
+</html>

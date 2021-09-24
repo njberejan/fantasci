@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>test</title>
+  </head>
+  <body>
+    test:
+      <!-- <br>
+      {% for player in player_list %}
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      <br>
+      Player Name: {{player.name}}
+      </br>
+      <br>
+      Week/Game: {{player.game}}
+      </br>
+      <br>
+      Rushing Yards: {{player.rush_yards}}
+      </br>
+      <br>
+      Passing Yards: {{player.passing_yards}}
+      </br>
+      <br>
+      Receiving Yards: {{player.receiving_yards}}
+      </br>
+      {% endfor %} -->
+
+      {% for def in player_list %}
+      <br>
+      home or away: {{def.home_or_away}}
+      <br>
+      <br>
+      points against: {{def.points_allowed}}
+      <br>
+      <br>
+      tackles: {{def.tackles}}
+      <br>
+      assisted tackles: {{def.assisted_tackles}}
+      <br>
+      sacks: {{def.sacks}}
+      <br>
+      INTs: {{def.interceptions}}
+      <br>
+      forced fumbles: {{def.forced_fumbles}}
+      <br>
+      total yards: {{def.total_yards_allowed}}
+      <br>
+      passing yards: {{def.passing_yards_allowed}}
+      <br>
+      rushing yards: {{def.rushing_yards_allowed}}
+      <br>
+      turnovers: {{def.turnovers}}
+      <br>
+      XP Made: {{def.xp_made}}
+      <br>
+      Opponent: {{def.opponent}}
+      {% endfor %}
+
+  </body>
+</html>

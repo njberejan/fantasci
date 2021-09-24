@@ -1,0 +1,266 @@
+
+<!doctype html>
+<html>
+{% load static %}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>Create League</title>
+
+<link rel="stylesheet" type = "text/css" href="{% static 'predictor/form.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
+</head>
+<header>
+
+  <style media="screen">
+      * {
+          font-family: 'Glegoo', serif;
+      }
+      .navbar-inverse {
+          color:white;
+         background-color:#472C00;
+     }
+    input[type=text]:focus {
+        width: 25%;
+}
+      h2 input {
+          -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+      }
+      input {
+          box-shadow: 3px 3px 3px #034732;
+      }
+      .submitbutton{
+          margin: 0 auto;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          text-align: center;
+      }
+      .points {
+          margin: 0 auto;
+           margin-left: auto ;
+          margin-right: auto ;
+          display: inline-block;
+          float: center;
+          padding-left: 300px;
+      }
+      .pointsone {
+          margin: 50px;
+            height: auto;
+            width: auto;
+            display:inline-block;
+            font-size: 15px;
+            line-height: 25px;
+             color: white;
+             text-shadow: 2px 2px black;
+        background-image: url("http://www.scrapbook.com/products/source/SBC_kf-64520.jpg");
+      }
+      .pointstwo {
+          margin: 10px;
+          height: auto;
+            width: auto;
+          display:inline-block;
+      }
+      .pointsthree {
+          margin: 10px;
+          height: auto;
+            width: auto;
+          display: inline-block;
+      }
+      .headline {
+        color: white;
+        text-shadow: 20px 2px black;
+        background-color: #008000;
+        background-image: url("http://orig00.deviantart.net/7db5/f/2015/081/a/0/an_american_football_field_diagram__nfl_mode__by_fromequestria2la-d7l7kfu.png");
+        background-position: 50%;
+        margin: 10px;
+        height: auto;
+          width: auto;
+        display:inline-block;
+        /*opacity: 0.9;*/
+      }
+      .subline {
+        color: white;
+        text-shadow: 2px 2px black;
+        background-image: url("http://www.scrapbook.com/products/source/SBC_kf-64520.jpg");
+      }
+      div h1 {
+          text-align: center;
+      }
+      div h2 {
+          text-align: center;
+      }
+      body header {
+          font-size:20px;
+      }
+      body h1 {
+	font-size: 50px;
+	line-height: 65px;
+           text-shadow: 2px 2px #ffffff;
+       }
+       body{
+           font-family: 'Glegoo', serif;
+            /*keep this one*/
+            background-image: url("https://pixabay.com/static/uploads/photo/2016/02/03/01/07/football-1176417_960_720.jpg");
+        	font-size: 25px;
+        	line-height: 25px;
+           color: white;
+           /*text-shadow: 2px 2px black;*/
+           background-color: #472c00;
+       }
+      nav .navbar{
+          color: #d3d3d3;
+      }
+      .btn-primary {
+          background-color: #472C00;
+          border-color: #472C00;
+      }
+      input, textarea {
+  background-color : #ffffff;
+}
+       textarea:focus, input:focus {
+    color: #000000;
+}
+      input, select, textarea{
+        color: #000;
+          background-color: #4c565e;
+    }
+      input, textarea {
+         background-color : #979797;
+    }
+     </style>
+
+  <!-- <h1> {% if user.is_authenticated %}
+   Hello, {{ user.username }}!
+   {% endif %} </h1> -->
+
+   <nav class="navbar navbar-inverse">
+     <div class="container-fluid">
+       <!-- Brand and toggle get grouped for better mobile display -->
+       <div class="navbar-header">
+         <a class="navbar-brand" href="{% url 'predictor:index' %}">Fanta-Sci</a>
+       </div>
+
+       <!-- Collect the nav links, forms, and other content for toggling -->
+       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav navbar-right">
+
+
+           <li><a href="{% url 'predictor:home' %}">Predict</a></li>
+           <li><a href="{% url 'predictor:league' %}">League Settings</a></li>
+            <li>
+                  {% if user.is_authenticated%}
+                <a href="{% url 'predictor:logout' %}">Logout</a>
+                  {% else %}
+                  <li>
+                <a href="{% url 'predictor:login' %}">Login</a>
+                </li>
+                    <li>
+                <a href="{% url 'predictor:register' %}">Register</a>
+                        </li>
+                  {% endif %}
+
+         </ul>
+
+       </div><!-- /.navbar-collapse -->
+     </div><!-- /.container-fluid -->
+   </nav>
+
+</header>
+
+
+
+<form id="register_form" method="post" action="" align="center">
+  <!-- <div class="headline"> <h1> Enter your league settings:</h1></div>
+  {% csrf_token %}
+  <!-- {{form.as_p}} -->
+<!-- <div class="subline"> <h2>League Name: {{form.league_name}}</h2></div><br>
+    <div class="points"> -->
+<!-- <div class ="headline"><h1> Enter your league settings:</h1></div> -->
+<div class="pointsone" style="font-weight: 900">
+  <h1> Enter your league settings:</h1>
+  {% csrf_token %}
+  <br>
+  <h2>League Name: {{form.league_name}}</h2>
+  <br>
+    Passing yards points: {{form.passing_yards_points}} per {{form.passing_yards_number_of_yards}} number of yards<br>
+    <br>
+
+    Passing touchdowns: {{form.passing_touchdowns}}<br>
+    <br>
+
+    Offensive interceptions: {{form.interceptions}}<br>
+<br>
+    Rushing yards points: {{form.rushing_yards_points}} per {{form.rushing_yards_number_of_yards}} number of yards<br>
+<br>
+    Rushing touchdowns: {{form.rushing_touchdowns}}<br>
+<br>
+    Receiving yards points: {{form.receiving_yards_points}} per {{form.receiving_yards_number_of_yards}} number of yards<br>
+<br>
+    Receiving touchdowns: {{form.receiving_touchdowns}}<br>
+<br>
+    Offensive fumble recovery for touchdown: {{form.fumble_recovered_for_td}}<br>
+<br>
+    Two-point conversion: {{form.two_point_conversions}}<br>
+<br>
+    <!-- </div>
+<div class="pointstwo"> -->
+    Fumbles lost: {{form.fumbles_lost}}<br>
+    <br>
+
+    Extra point made: {{form.XP_made}}<br>
+    <br>
+
+    Field goal made: {{form.FG_made}}<br>
+<br>
+    Long field goal (>50 yards) made: {{form.FG_long_made}}<br>
+<br>
+    Sacks: {{form.sacks}}<br>
+<br>
+    Defensive interceptions: {{form.d_interceptions}}<br>
+<br>
+    Defensive fumble recovery: {{form.fumbles_recovered}}<br>
+<br>
+    Safety: {{form.safeties}}<br>
+<br>
+    Defensive touchdown: {{form.defensive_touchdowns}}<br>
+<br>
+    <!-- </div>
+    <div class="pointsthree"> -->
+    Kickoff or Punt return touchdowns: {{form.kick_punt_return_tds}}<br>
+<br>
+    0 Points Allowed: {{form.points_allowed_value1}}<br>
+<br>
+    1-6 Points Allowed: {{form.points_allowed_value2}}<br>
+<br>
+    7-13 Points Allowed: {{form.points_allowed_value3}}<br>
+    <br>
+
+    14-20 Points Allowed: {{form.points_allowed_value4}}<br>
+    <br>
+
+    21-27 Points Allowed: {{form.points_allowed_value5}}<br>
+    <br>
+
+    28-34 Points Allowed: {{form.points_allowed_value6}}<br>
+    <br>
+35+ Points Allowed: {{form.points_allowed_value7}}<br>
+<br>
+</div>
+
+    </div>
+
+    <div class="submitbutton">
+<input class="btn btn-primary" style="margin-top:15px;height:50px;width:200px;" type="submit" value="Submit">
+    <!-- <input class="button" type="submit" name="submit" value="Submit" /> -->
+</div>
+</form>
+
+</html>

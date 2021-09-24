@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+   <head>
+       <meta charset="utf-8">
+       <meta http-equiv="X-UA-Compatible" content="IE=edge">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+       <title>Predicting</title>
+
+    <!-- <link rel="stylesheet" type = "text/css" href="{% static 'predictor/base.css' %}"> -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link href='https://fonts.googleapis.com/css?family=Glegoo' rel='stylesheet' type='text/css'>
+   </head>
+   <header>
+   <body>
+
+       <style media="screen">
+
+      .navbar-inverse {
+          color:white;
+         background-color:#472C00;
+
+     }
+
+    input[type=text]:focus {
+        width: 25%;
+}
+      h2 input {
+          -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+      }
+
+      input {
+          box-shadow: 3px 3px 3px #034732;
+      }
+
+      .submitbutton{
+          margin: 0 auto;
+          margin-left: auto;
+          margin-right: auto;
+          display: block;
+          text-align: center;
+
+      }
+      .points {
+          margin: 0 auto;
+           margin-left: auto ;
+          margin-right: auto ;
+          display: inline-block;
+          float: center;
+          padding-left: 300px;
+
+      }
+
+      .pointsone {
+          margin: 10px;
+            height: auto;
+            width: auto;
+            display:inline-block;
+      }
+
+      .pointstwo {
+          margin: 10px;
+          height: auto;
+            width: auto;
+          display:inline-block;
+      }
+
+      .pointsthree {
+          margin: 10px;
+          height: auto;
+            width: auto;
+          display: inline-block;
+      }
+
+      div h1 {
+          text-align: center;
+      }
+      div h2 {
+          text-align: center;
+      }
+
+      body h1 {
+          font-family: 'Glegoo', serif;
+	font-size: 50px;
+	line-height: 65px;
+           text-shadow: 2px 2px #ffffff;
+
+       }
+
+      body header {
+          font-size: 20px;
+      }
+
+       body{
+           background-image: url("http://static.nfl.com/static/content/public/pg-photo/2011/11/13/09000d5d8240f800_gallery_600.jpg");
+         font-family: 'Glegoo', serif;
+	font-size: 15px;
+	line-height: 25px;
+           color: #FFFFFF;
+           background-color: #472c00;
+       }
+
+      nav .navbar{
+          color: #d3d3d3;
+      }
+
+      .btn-primary {
+          background-color: #472C00;
+          border-color: #472C00;
+      }
+
+      textarea:focus, input:focus {
+    color: #000000;
+}
+      input, select, textarea{
+        color: #000;
+          background-color: #4c565e;
+    }
+
+      input, textarea {
+         background-color : #979797;
+    }
+           .well {
+               background-color:#d3d3d3;
+           }
+
+           .well h1 {
+               color:#472C00;
+           }
+           .modal-content {
+               background-color: #d3d3d3;
+               color: #472C00;
+           }
+
+           #content-container {
+               margin: 0 auto;
+               padding-top: 50px;
+               padding-left: 175px;
+               text-align: center;
+           }
+
+           .loginbutton {
+               padding-top: 10px;
+               padding-right: 245px;
+               text-align:center;
+           }
+
+           .table td {
+               font-size: large;
+           }
+     </style>
+
+     <!-- <h1> {% if user.is_authenticated %}
+      Hello, {{ user.username }}!
+      {% endif %} </h1> -->
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'predictor:index' %}">Fanta-Sci</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+
+            </ul>
+
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+  </header>
+
+
+
+    </body>
+</html>
+
+
+
+    <div id="content-container" class="container p-none">
+        <div class="lgn-container col-lg-8">
+            <form id="login-form" method="post"
+                  action="{% url 'predictor:django.contrib.auth.views.login' %}">
+                {% csrf_token %}
+                <table class="table">
+                    <tr>
+                        <td><label for="id_username">Username</label></td>
+                        <td><input id="id_username" name="username"
+                                   type="text" class="form-control"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="id_password">Password</label></td>
+                        <td><input id="id_password" name="password"
+                                   type="password" class="form-control"></td>
+                    </tr>
+                </table>
+                {% if form.errors %}
+                    <p class=" label label-danger">
+                        Your username and password didn't match.
+                        Please try again.
+                    </p>
+                {% endif %}
+
+                <div class="loginbutton"><input type="submit" value="Login"
+                       class="btn btn-primary pull-right" /></div>
+                <input type="hidden" name="next" value="{{ next }}" />
+            </form>
+        </div>
+    </div>

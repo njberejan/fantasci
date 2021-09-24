@@ -1,0 +1,12 @@
+form input[name='league_name'] {
+    width: 300px;
+    font-size: xx-large;
+}
+
+/*form input[name='passing_yards_points'] {
+    width:50px;
+}*/
+
+form input {
+    width:50px;
+}

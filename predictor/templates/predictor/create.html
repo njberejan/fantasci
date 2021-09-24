@@ -1,0 +1,127 @@
+<!doctype html>
+<html>
+{% load static %}
+ {% csrf_token %}
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+
+  <title>Create League</title>
+
+<link rel="stylesheet" type = "text/css" href="{% static 'predictor/form.css' %}">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+</head>
+<header>
+
+
+<body>
+
+  <style media="screen">
+    body{
+      font-family: 'Roboto';
+    }
+  </style>
+
+  <!-- <h1> {% if user.is_authenticated %}
+   Hello, {{ user.username }}!
+   {% endif %} </h1> -->
+
+   <nav class="navbar navbar-inverse">
+     <div class="container-fluid">
+       <!-- Brand and toggle get grouped for better mobile display -->
+       <div class="navbar-header">
+         <a class="navbar-brand" href="#">Fanta-Sci</a>
+       </div>
+
+       <!-- Collect the nav links, forms, and other content for toggling -->
+       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+         <ul class="nav navbar-nav navbar-right">
+
+
+           <li><a href="{% url 'predictor:create' %}">League Settings</a></li>
+           <li>
+             <a href="{% url 'predictor:logout' %}">Logout</a>
+           </li>
+
+         </ul>
+
+       </div><!-- /.navbar-collapse -->
+     </div><!-- /.container-fluid -->
+   </nav>
+
+</header>
+
+<!-- <script src="{% static 'predictor/uilang.js' %}"></script>
+
+<link rel="stylesheet" href="{% static 'predictor/create.css' %}"
+
+<p>Player name. <button class=rsvp>view stats</button>
+
+<div id=overlay>
+  <div id=registration>
+    <a href=# class=close>Close</a>
+    <h1>Edit Player stats</h1>
+    <input placeholder=PassingYards>
+      <br>
+      <input placeholder=RushingYards>
+      <br>
+      <input placeholder=Touchdowns>
+      <br>
+      <input placeholder=Interceptions>
+      <br>
+      <br>
+    <button href=# class=confirm>submit</button>
+  </div>
+</div> -->
+
+<form id="register_form" method="post" action="">
+  <div> Enter numeric values corresponding to the scoring rules of your league:</div>
+  <br>
+  </br>
+  {% csrf_token %}
+  <!-- {{form.as_p}} -->
+League Name: {{form.league_name}}<br>
+Passing yards points: {{form.passing_yards_points}} per {{form.passing_yards_number_of_yards}} number of yards<br>
+Passing touchdowns: {{form.passing_touchdowns}}<br>
+Offensive interceptions: {{form.interceptions}}<br>
+Rushing yards points: {{form.rushing_yards_points}} per {{form.rushing_yards_number_of_yards}} number of yards<br>
+Rushing touchdowns: {{form.rushing_touchdowns}}<br>
+Receiving yards points: {{form.receiving_yards_points}} per {{form.receiving_yards_number_of_yards}} number of yards<br>
+Receiving touchdowns: {{form.receiving_touchdowns}}<br>
+Offensive fumble recovery for touchdown: {{form.fumble_recovered_for_td}}<br>
+Two-point conversion: {{form.two_point_conversions}}<br>
+Fumbles lost: {{form.fumbles_lost}}<br>
+Extra point made: {{form.XP_made}}<br>
+Field goal made: {{form.FG_made}}<br>
+Long field goal (>50 yards) made: {{form.FG_long_made}}<br>
+Sacks: {{form.sacks}}<br>
+Defensive interceptions: {{form.d_interceptions}}<br>
+Defensive fumble recovery: {{form.fumbles_recovered}}<br>
+Safety: {{form.safeties}}<br>
+Defensive touchdown: {{form.defensive_touchdowns}}<br>
+Kickoff or Punt return touchdowns: {{form.kick_punt_return_tds}}<br>
+0 Points Allowed: {{form.points_allowed_value1}}<br>
+1-6 Points Allowed: {{form.points_allowed_value2}}<br>
+7-13 Points Allowed: {{form.points_allowed_value3}}<br>
+14-20 Points Allowed: {{form.points_allowed_value4}}<br>
+21-27 Points Allowed: {{form.points_allowed_value5}}<br>
+28-34 Points Allowed: {{form.points_allowed_value6}}<br>
+35+ Points Allowed: {{form.points_allowed_value7}}<br>
+
+<input class="btn btn-primary" style="margin-top:15px;height:50px;width:200px;" type="submit" value="Submit">
+    <!-- <input class="button" type="submit" name="submit" value="Submit" /> -->
+</form>
+
+<code>
+  <!-- clicking on ".rsvp" adds class "open" on "#overlay"
+  clicking on ".close, .confirm" removes class "open" on "#overlay" -->
+</code>
+</html>

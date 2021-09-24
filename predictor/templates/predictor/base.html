@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    {% load static %}
+
+<head>
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type = "text/css" href="{% static 'predictor/base.css' %}">
+
+</head>
+
+
+	<header>
+		<h1>It's in the game</h1>
+        <a href="">Logout</a>
+    </header>
+
+    <ul>
+        <li><a href="{% url 'predictor:home' %}">Profile</a></li>
+        <li><a href="{% url 'predictor:league' %}">League Settings</a></li>
+    </ul>
+
+</html>
